@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens */
+:root {
+  --ink: #0B0B0E;
+  --amber: #F77A18;
+}
+
+html, body, #__next {
+  background: var(--ink);
+}
+
+/* Reusable card with warm hover glow */
+.card {
+  position: relative;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 18px;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: radial-gradient(120% 120% at 50% 50%, rgba(247,122,24,.35), rgba(247,122,24,0) 60%);
+  opacity: 0;
+  transform: scale(.9);
+  filter: blur(18px);
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--shadow-amber, 0 0 0 1px rgba(247,122,24,.25), 0 18px 45px rgba(247,122,24,.18));
+  border-color: rgba(247,122,24,.35);
+}
+
+.card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* CTA subtle bloom on hover */
+.btn-amber {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-amber::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(100% 100% at 50% 50%, rgba(247,122,24,.55), rgba(247,122,24,0) 60%);
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity .3s ease;
+  z-index: 0;
+}
+.btn-amber:hover::after {
+  opacity: 1;
+}
+.btn-amber > span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Simple progress bar */
+.progress {
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.progress > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #FF8B2E, #F77A18);
+  border-radius: inherit;
+}
